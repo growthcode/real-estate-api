@@ -1,0 +1,35 @@
+<h2 class="mb-4">Estimate Property Value</h2>
+
+<%= form_with url: estimate_property_path, method: :get, class: "row g-3 mb-5" do |f| %>
+  <div class="col-md-5">
+    <%= f.text_field :address, value: params[:address], placeholder: "Street address (e.g. 123 Main St)", class: "form-control" %>
+  </div>
+  <div class="col-md-3">
+    <%= f.text_field :city, value: params[:city], placeholder: "City", class: "form-control" %>
+  </div>
+  <div class="col-md-2">
+    <%= f.text_field :state_code, value: params[:state_code], placeholder: "State", class: "form-control", maxlength: 2 %>
+  </div>
+  <div class="col-md-2">
+    <%= f.text_field :zip, value: params[:zip], placeholder: "ZIP", class: "form-control", maxlength: 5 %>
+  </div>
+  <div class="col-md-2">
+    <%= f.submit "Estimate", class: "btn btn-primary w-100" %>
+  </div>
+<% end %>
+
+<% if @estimate.present? %>
+  <div class="card shadow-sm" style="max-width: 500px">
+    <div class="card-body text-center py-5">
+      <h5 class="card-title text-muted">Estimated Value</h5>
+      <div class="display-5 fw-bold text-success my-3">
+        <%= number_to_currency(@estimate.dig("estimate", "estimate"), precision: 0) rescue @estimate.inspect %>
+      </div>
+      <p class="text-muted small">
+        Range: <%= number_to_currency(@estimate.dig("estimate", "low"), precision: 0) rescue "N/A" %>
+        &ndash;
+        <%= number_to_currency(@estimate.dig("estimate", "high"), precision: 0) rescue "N/A" %>
+      </p>
+    </div>
+  </div>
+<% end %>

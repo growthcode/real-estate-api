@@ -1,0 +1,39 @@
+<h2 class="mb-4">Market Trends</h2>
+
+<%= form_with url: market_trends_path, method: :get, class: "row g-3 mb-5" do |f| %>
+  <div class="col-md-5">
+    <%= f.text_field :city, value: params[:city], placeholder: "City (e.g. Denver)", class: "form-control" %>
+  </div>
+  <div class="col-md-3">
+    <%= f.text_field :state_code, value: params[:state_code], placeholder: "State (e.g. CO)", class: "form-control", maxlength: 2 %>
+  </div>
+  <div class="col-md-2">
+    <%= f.submit "Get Trends", class: "btn btn-primary w-100" %>
+  </div>
+<% end %>
+
+<% if @trends.present? %>
+  <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+    <% [
+      ["Median Listing Price", @trends.dig("median_listing_price"), :currency],
+      ["Median Days on Market", @trends.dig("median_days_on_market"), :number],
+      ["Active Listings", @trends.dig("active_listing_count"), :number],
+      ["Median Sold Price", @trends.dig("median_sold_price"), :currency],
+      ["Price Reduced Count", @trends.dig("price_reduced_count"), :number],
+      ["New Listing Count", @trends.dig("new_listing_count"), :number],
+    ].each do |label, value, type| %>
+      <div class="col">
+        <div class="card shadow-sm h-100 text-center py-3">
+          <div class="fs-3 fw-bold text-primary">
+            <% if type == :currency %>
+              <%= number_to_currency(value, precision: 0) rescue value %>
+            <% else %>
+              <%= number_with_delimiter(value) rescue value %>
+            <% end %>
+          </div>
+          <div class="text-muted small"><%= label %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

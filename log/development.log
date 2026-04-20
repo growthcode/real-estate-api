@@ -1,0 +1,85 @@
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2026-04-20 15:48:21 -0700
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ListingsController#search as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 1.1ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 254.4ms | GC: 33.1ms)
+Completed 200 OK in 275ms (Views: 257.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 33.7ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 15:48:22 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-04-20 15:55:09 -0700
+Processing by ListingsController#search as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 3.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 40.1ms | GC: 0.0ms)
+Completed 200 OK in 450ms (Views: 43.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 15:55:10 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.3ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 15:56:22 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | GC: 0.0ms)
+Completed 200 OK in 388ms (Views: 12.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 15:56:43 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 5.2ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 51.1ms | GC: 3.6ms)
+Completed 200 OK in 1166ms (Views: 60.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 15:56:50 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 17.8ms | GC: 15.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.1ms | GC: 22.9ms)
+Completed 200 OK in 778ms (Views: 29.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 47.9ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 15:58:32 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 18.2ms | GC: 1.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 80.8ms | GC: 29.6ms)
+Completed 200 OK in 1787ms (Views: 88.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 30.8ms)
+
+

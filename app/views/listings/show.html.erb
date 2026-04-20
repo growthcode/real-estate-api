@@ -1,0 +1,56 @@
+<%= link_to "&larr; Back to Search".html_safe, search_listings_path, class: "btn btn-sm btn-outline-secondary mb-4" %>
+
+<% if @property.blank? %>
+  <div class="alert alert-warning">Property not found.</div>
+<% else %>
+  <div class="row">
+    <div class="col-lg-8">
+      <h2><%= @property.dig("location", "address", "line") %></h2>
+      <p class="text-muted">
+        <%= @property.dig("location", "address", "city") %>,
+        <%= @property.dig("location", "address", "state_code") %>
+        <%= @property.dig("location", "address", "postal_code") %>
+      </p>
+      <h3 class="text-success">
+        <%= number_to_currency(@property.dig("list_price"), precision: 0) rescue @property.dig("list_price") %>
+      </h3>
+
+      <div class="row text-center my-4">
+        <div class="col">
+          <div class="fs-4 fw-bold"><%= @property.dig("description", "beds") %></div>
+          <small class="text-muted">Bedrooms</small>
+        </div>
+        <div class="col">
+          <div class="fs-4 fw-bold"><%= @property.dig("description", "baths_consolidated") %></div>
+          <small class="text-muted">Bathrooms</small>
+        </div>
+        <div class="col">
+          <div class="fs-4 fw-bold"><%= number_with_delimiter(@property.dig("description", "sqft")) %></div>
+          <small class="text-muted">Sq Ft</small>
+        </div>
+        <div class="col">
+          <div class="fs-4 fw-bold"><%= @property.dig("description", "year_built") %></div>
+          <small class="text-muted">Year Built</small>
+        </div>
+      </div>
+
+      <h5>Description</h5>
+      <p><%= @property.dig("description", "text") || "No description available." %></p>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Property Details</h6>
+          <ul class="list-unstyled small">
+            <li><strong>Type:</strong> <%= @property.dig("description", "type") %></li>
+            <li><strong>Lot Size:</strong> <%= number_with_delimiter(@property.dig("description", "lot_sqft")) %> sqft</li>
+            <li><strong>Garage:</strong> <%= @property.dig("description", "garage") %> car</li>
+            <li><strong>Stories:</strong> <%= @property.dig("description", "stories") %></li>
+            <li><strong>Status:</strong> <%= @property.dig("status") %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

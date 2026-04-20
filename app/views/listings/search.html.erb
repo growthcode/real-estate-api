@@ -1,0 +1,51 @@
+<h2 class="mb-4">Search Listings</h2>
+
+<%= form_with url: search_listings_path, method: :get, class: "row g-3 mb-5" do |f| %>
+  <div class="col-md-5">
+    <%= f.text_field :city, value: params[:city].presence || "Las Vegas", placeholder: "City", class: "form-control" %>
+  </div>
+  <div class="col-md-3">
+    <%= f.text_field :state_code, value: params[:state_code].presence || "NV", placeholder: "State", class: "form-control", maxlength: 2 %>
+  </div>
+  <div class="col-md-2">
+    <%= f.submit "Search", class: "btn btn-primary w-100" %>
+  </div>
+<% end %>
+
+<% if @listings %>
+  <% if @listings.empty? %>
+    <div class="alert alert-warning">No listings found. Try a different city or check your API key.</div>
+  <% else %>
+    <p class="text-muted"><%= @listings.size %> results for <strong><%= @query[:city] %>, <%= @query[:state_code] %></strong></p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% @listings.each do |listing| %>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <% if (photo = listing.dig("primary_photo", "href")).present? %>
+              <img src="<%= photo %>" class="card-img-top" style="height:180px;object-fit:cover">
+            <% end %>
+            <div class="card-body">
+              <h6 class="card-title"><%= listing.dig("location", "address", "line") %></h6>
+              <p class="text-muted small mb-1">
+                <%= listing.dig("location", "address", "city") %>,
+                <%= listing.dig("location", "address", "state_code") %>
+                <%= listing.dig("location", "address", "postal_code") %>
+              </p>
+              <p class="fw-bold text-success mb-1">
+                <%= number_to_currency(listing.dig("list_price"), precision: 0) rescue listing.dig("list_price") %>
+              </p>
+              <p class="small text-muted mb-0">
+                <%= listing.dig("description", "beds") %> bd &middot;
+                <%= listing.dig("description", "baths_consolidated") %> ba &middot;
+                <%= number_with_delimiter(listing.dig("description", "sqft")) %> sqft
+              </p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <%= link_to "View Details", listing_path(listing["property_id"]), class: "btn btn-sm btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
