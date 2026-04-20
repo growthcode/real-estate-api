@@ -11,9 +11,27 @@
         <%= @property.dig("location", "address", "state_code") %>
         <%= @property.dig("location", "address", "postal_code") %>
       </p>
-      <h3 class="text-success">
-        <%= number_to_currency(@property.dig("list_price"), precision: 0) rescue @property.dig("list_price") %>
-      </h3>
+      <div class="d-flex align-items-baseline gap-3 flex-wrap mb-2">
+        <h3 class="text-success mb-0">
+          <%= number_to_currency(@property.dig("list_price"), precision: 0) rescue @property.dig("list_price") %>
+        </h3>
+        <% if (ppsf = price_per_sqft(@property.dig("list_price"), @property.dig("description", "sqft"))) %>
+          <span class="text-muted"><%= ppsf %> / sqft</span>
+        <% end %>
+      </div>
+
+      <% chg = annualized_change(@property.dig("list_price"), @property["last_sold_price"], @property["last_sold_date"]) %>
+      <% if chg %>
+        <% up = chg[:total] >= 0 %>
+        <p class="mb-3">
+          <span class="text-muted">Last sold <%= chg[:year] %>:</span>
+          <strong><%= number_to_currency(chg[:sold_price], precision: 0) %></strong>
+          <span class="<%= up ? 'text-danger' : 'text-success' %> fw-bold ms-1">
+            <%= up ? '▲' : '▼' %> <%= chg[:total].abs %>% total
+          </span>
+          <span class="text-muted ms-1">(<%= up ? '+' : '' %><%= chg[:annual] %>% / yr)</span>
+        </p>
+      <% end %>
 
       <div class="row text-center my-4">
         <div class="col">
@@ -32,6 +50,12 @@
           <div class="fs-4 fw-bold"><%= @property.dig("description", "year_built") %></div>
           <small class="text-muted">Year Built</small>
         </div>
+        <% if (ppsf = price_per_sqft(@property.dig("list_price"), @property.dig("description", "sqft"))) %>
+          <div class="col">
+            <div class="fs-4 fw-bold"><%= ppsf %></div>
+            <small class="text-muted">Per Sqft</small>
+          </div>
+        <% end %>
       </div>
 
       <h5>Description</h5>
@@ -39,7 +63,7 @@
     </div>
 
     <div class="col-lg-4">
-      <div class="card shadow-sm">
+      <div class="card shadow-sm mb-3">
         <div class="card-body">
           <h6 class="card-title">Property Details</h6>
           <ul class="list-unstyled small">
@@ -51,6 +75,21 @@
           </ul>
         </div>
       </div>
+
+      <% if @lat && @lng %>
+        <div id="property-map" style="height:260px;border-radius:8px;"></div>
+        <script>
+          (function() {
+            const el = document.getElementById('property-map');
+            if (el._leaflet_id) { el._leaflet_id = null; el.innerHTML = ''; }
+            const map = L.map('property-map').setView([<%= @lat %>, <%= @lng %>], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            L.marker([<%= @lat %>, <%= @lng %>]).addTo(map);
+          })();
+        </script>
+      <% end %>
     </div>
   </div>
 <% end %>

@@ -83,3 +83,387 @@ Processing by ListingsController#search as HTML
 Completed 200 OK in 1787ms (Views: 88.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 30.8ms)
 
 
+Started GET "/listings/1913439310" for ::1 at 2026-04-20 16:01:50 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1913439310"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 2.5ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | GC: 0.6ms)
+Completed 200 OK in 12554ms (Views: 7.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.8ms)
+
+
+Started GET "/listings/1913439310" for ::1 at 2026-04-20 16:02:03 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1913439310"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 2.8ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.3ms)
+Completed 200 OK in 709ms (Views: 7.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/listings/1913439310" for ::1 at 2026-04-20 16:02:04 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1913439310"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | GC: 0.2ms)
+Completed 200 OK in 721ms (Views: 5.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 16:09:09 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 12.0ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.0ms | GC: 2.9ms)
+Completed 200 OK in 4645ms (Views: 28.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 20.0ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:09:14 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 16:12:54 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 14.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 34.0ms | GC: 0.0ms)
+Completed 200 OK in 1666ms (Views: 38.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:12:56 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:13:24 -0700
+Processing by Rails::PwaController#manifest as JSON
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2026-04-20 16:13:24 -0700
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.1ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&commit=Search" for ::1 at 2026-04-20 16:13:46 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 15.3ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 77.0ms | GC: 28.9ms)
+Completed 200 OK in 1483ms (Views: 81.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 31.0ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2026-04-20 16:13:47 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:13:47 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:14:47 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 15.6ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 76.9ms | GC: 29.7ms)
+Completed 200 OK in 1565ms (Views: 83.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 31.8ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:15:56 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 15.7ms | GC: 1.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 72.2ms | GC: 29.4ms)
+Completed 200 OK in 1451ms (Views: 75.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 31.2ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:15:58 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:17:53 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 25.6ms | GC: 10.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 41.7ms | GC: 12.4ms)
+Completed 200 OK in 1427ms (Views: 44.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 13.2ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:17:55 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/1451586038" for ::1 at 2026-04-20 16:17:59 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1451586038"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | GC: 0.3ms)
+Completed 200 OK in 1224ms (Views: 17.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/listings/1451586038" for ::1 at 2026-04-20 16:18:00 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1451586038"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | GC: 0.0ms)
+Completed 200 OK in 837ms (Views: 9.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:18:01 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.1ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/1451586038" for ::1 at 2026-04-20 16:19:38 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1451586038"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.3ms | GC: 0.0ms)
+Completed 200 OK in 850ms (Views: 33.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:20:57 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 8.9ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.5ms | GC: 2.5ms)
+Completed 200 OK in 1784ms (Views: 25.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.0ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:20:59 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:23:52 -0700
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2026-04-20 16:23:52 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:24:01 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 21.5ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 38.8ms | GC: 2.0ms)
+Completed 200 OK in 1512ms (Views: 41.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.9ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2026-04-20 16:24:02 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:24:02 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.1ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:27:53 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 14.5ms | GC: 1.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.9ms | GC: 1.8ms)
+Completed 200 OK in 2012ms (Views: 30.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:27:55 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.4ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:30:52 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 41.2ms | GC: 8.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 52.7ms | GC: 9.6ms)
+Completed 200 OK in 2180ms (Views: 55.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 13.3ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:30:54 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/listings/1940867744" for ::1 at 2026-04-20 16:34:20 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1940867744"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 2.4ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 39.3ms | GC: 11.3ms)
+Completed 200 OK in 1414ms (Views: 43.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.7ms)
+
+
+Started GET "/listings/1940867744" for ::1 at 2026-04-20 16:34:25 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"1940867744"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 2.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.0ms | GC: 1.3ms)
+Completed 200 OK in 899ms (Views: 23.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.8ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&commit=Search" for ::1 at 2026-04-20 16:34:56 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 54.2ms | GC: 6.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 64.1ms | GC: 7.3ms)
+Completed 200 OK in 5083ms (Views: 66.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.1ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:35:01 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=list_date&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:37:18 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"list_date", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 54.2ms | GC: 12.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 57.5ms | GC: 12.4ms)
+Completed 200 OK in 2081ms (Views: 58.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 15.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=list_date&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:37:42 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"list_date", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 22.4ms | GC: 1.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 24.7ms | GC: 1.8ms)
+Completed 200 OK in 1861ms (Views: 25.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 62.1ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:37:44 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/2655459161" for ::1 at 2026-04-20 16:41:59 -0700
+Processing by ListingsController#show as HTML
+  Parameters: {"id"=>"2655459161"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/show.html.erb within layouts/application
+  Rendered listings/show.html.erb within layouts/application (Duration: 3.6ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.3ms | GC: 10.2ms)
+Completed 200 OK in 1758ms (Views: 37.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 12.1ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=list_date&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:43:03 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"list_date", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 48.3ms | GC: 10.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 58.3ms | GC: 11.2ms)
+Completed 200 OK in 2564ms (Views: 60.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 13.8ms)
+
+
+Started GET "/manifest.json" for ::1 at 2026-04-20 16:43:05 -0700
+Processing by Rails::PwaController#manifest as JSON
+  Rendering pwa/manifest.json.erb
+  Rendered pwa/manifest.json.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:43:11 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 48.1ms | GC: 7.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 60.8ms | GC: 9.3ms)
+Completed 200 OK in 2514ms (Views: 63.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 9.3ms)
+
+
+[dotenv] Set [36mRAPIDAPI_KEY[0m
+[dotenv] Loaded [33m.env[0m

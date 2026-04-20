@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   root "listings#search"
 
   get "listings/search", to: "listings#search", as: :search_listings
-  get "listings/:id", to: "listings#show", as: :listing
 
   get "properties/estimate", to: "properties#estimate", as: :estimate_property
 

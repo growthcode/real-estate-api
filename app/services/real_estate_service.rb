@@ -8,18 +8,34 @@ class RealEstateService
     "Content-Type"    => "application/json"
   }.freeze
 
-  def self.search_listings(city:, state_code:, limit: 20, offset: 0)
-    post("#{BASE_URL}/properties/v3/list", {
-      headers: HEADERS,
-      body: {
-        city: city,
-        state_code: state_code,
-        limit: limit,
-        offset: offset,
-        status: ["for_sale"],
-        sort: { direction: "desc", field: "list_date" }
-      }.to_json
-    })
+  def self.search_listings(city:, state_code:, limit: 200, offset: 0,
+                           price_min: nil, price_max: nil,
+                           sqft_min: nil, sqft_max: nil,
+                           home_type: nil, sort_field: "list_date", sort_dir: "desc")
+    body = {
+      city: city,
+      state_code: state_code,
+      limit: limit,
+      offset: offset,
+      status: ["for_sale"],
+      sort: { direction: sort_dir, field: sort_field }
+    }
+
+    if price_min || price_max
+      body[:list_price] = {}
+      body[:list_price][:min] = price_min.to_i if price_min
+      body[:list_price][:max] = price_max.to_i if price_max
+    end
+
+    if sqft_min || sqft_max
+      body[:sqft] = {}
+      body[:sqft][:min] = sqft_min.to_i if sqft_min
+      body[:sqft][:max] = sqft_max.to_i if sqft_max
+    end
+
+    body[:type] = [home_type] if home_type.present?
+
+    post("#{BASE_URL}/properties/v3/list", { headers: HEADERS, body: body.to_json })
   end
 
   def self.property_detail(property_id)

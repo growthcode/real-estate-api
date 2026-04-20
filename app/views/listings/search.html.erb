@@ -1,51 +1,286 @@
-<h2 class="mb-4">Search Listings</h2>
+<%= content_for :full_width, true %>
 
-<%= form_with url: search_listings_path, method: :get, class: "row g-3 mb-5" do |f| %>
-  <div class="col-md-5">
-    <%= f.text_field :city, value: params[:city].presence || "Las Vegas", placeholder: "City", class: "form-control" %>
-  </div>
-  <div class="col-md-3">
-    <%= f.text_field :state_code, value: params[:state_code].presence || "NV", placeholder: "State", class: "form-control", maxlength: 2 %>
-  </div>
-  <div class="col-md-2">
-    <%= f.submit "Search", class: "btn btn-primary w-100" %>
-  </div>
-<% end %>
-
-<% if @listings %>
-  <% if @listings.empty? %>
-    <div class="alert alert-warning">No listings found. Try a different city or check your API key.</div>
-  <% else %>
-    <p class="text-muted"><%= @listings.size %> results for <strong><%= @query[:city] %>, <%= @query[:state_code] %></strong></p>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      <% @listings.each do |listing| %>
-        <div class="col">
-          <div class="card h-100 shadow-sm">
-            <% if (photo = listing.dig("primary_photo", "href")).present? %>
-              <img src="<%= photo %>" class="card-img-top" style="height:180px;object-fit:cover">
-            <% end %>
-            <div class="card-body">
-              <h6 class="card-title"><%= listing.dig("location", "address", "line") %></h6>
-              <p class="text-muted small mb-1">
-                <%= listing.dig("location", "address", "city") %>,
-                <%= listing.dig("location", "address", "state_code") %>
-                <%= listing.dig("location", "address", "postal_code") %>
-              </p>
-              <p class="fw-bold text-success mb-1">
-                <%= number_to_currency(listing.dig("list_price"), precision: 0) rescue listing.dig("list_price") %>
-              </p>
-              <p class="small text-muted mb-0">
-                <%= listing.dig("description", "beds") %> bd &middot;
-                <%= listing.dig("description", "baths_consolidated") %> ba &middot;
-                <%= number_with_delimiter(listing.dig("description", "sqft")) %> sqft
-              </p>
-            </div>
-            <div class="card-footer bg-transparent">
-              <%= link_to "View Details", listing_path(listing["property_id"]), class: "btn btn-sm btn-outline-primary" %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+<div class="container-fluid px-3">
+  <div class="row align-items-center mb-3 pt-1">
+    <div class="col">
+      <h5 class="mb-0 fw-bold">Search Listings</h5>
     </div>
+  </div>
+
+  <%= form_with url: search_listings_path, method: :get, class: "row g-2 mb-3" do |f| %>
+    <div class="col-md-2">
+      <%= f.text_field :city, value: params[:city].presence || "Las Vegas", placeholder: "City", class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-auto">
+      <%= f.text_field :state_code, value: params[:state_code].presence || "NV", placeholder: "ST", class: "form-control form-control-sm", maxlength: 2, style: "width:52px" %>
+    </div>
+    <div class="col-md-1">
+      <%= f.number_field :price_min, value: params[:price_min].presence || 200_000, placeholder: "Min $", class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-1">
+      <%= f.number_field :price_max, value: params[:price_max].presence || 650_000, placeholder: "Max $", class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-1">
+      <%= f.number_field :sqft_min, value: params[:sqft_min].presence || 1_750, placeholder: "Min sqft", class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-1">
+      <%= f.number_field :sqft_max, value: params[:sqft_max].presence, placeholder: "Max sqft", class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.select :home_type,
+            [["Single Family", "single_family"], ["Townhouse", "townhomes"],
+             ["Condo", "condos"], ["Multi-Family", "multi_family"], ["Any Type", ""]],
+            { selected: params[:home_type].presence || "single_family" },
+            class: "form-select form-select-sm" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.select :sort_field,
+            [["⭐ Best Value", "best_value"], ["Newest", "list_date"],
+             ["Price ↑", "list_price_asc"], ["Price ↓", "list_price"],
+             ["Sqft ↑", "sqft"], ["Price Reduced", "price_reduced_date"]],
+            { selected: params[:sort_field].presence || "best_value" },
+            class: "form-select form-select-sm",
+            data: { sort_field_select: true } %>
+    </div>
+    <%= f.hidden_field :sort_dir, value: params[:sort_dir].presence || "desc", id: "sort_dir_field" %>
+    <div class="col-md-1">
+      <%= f.submit "Search", class: "btn btn-primary btn-sm w-100" %>
+    </div>
+    <script>
+      (function() {
+        const sel = document.querySelector('[data-sort-field-select]');
+        const dir = document.getElementById('sort_dir_field');
+        if (!sel || !dir) return;
+        sel.addEventListener('change', function() {
+          if (this.value === 'list_price' && this.options[this.selectedIndex].text.includes('↑')) dir.value = 'asc';
+          else if (this.value === 'sqft') dir.value = 'asc';
+          else dir.value = 'desc';
+        });
+      })();
+    </script>
   <% end %>
-<% end %>
+
+  <% if @listings %>
+    <% if @listings.empty? %>
+      <div class="alert alert-warning">No listings found. Try adjusting filters or check your API key.</div>
+    <% else %>
+      <p class="text-muted small mb-2">
+        <%= @listings.size %> results &mdash; <%= number_to_currency(@query[:price_min].to_i, precision: 0) %> to <%= number_to_currency(@query[:price_max].to_i, precision: 0) %>
+        &mdash; sorted by <%= @query[:sort_field] == "best_value" ? "⭐ best value" : @query[:sort_field].to_s.humanize.downcase %>
+      </p>
+
+      <div class="d-flex gap-3" style="height: calc(100vh - 200px);">
+
+        <%# Left: scrollable cards %>
+        <div style="width:420px;flex-shrink:0;overflow-y:auto;">
+          <% @listings.each do |listing| %>
+            <% value = listing["_value"] %>
+            <div class="card mb-3 shadow-sm listing-card <%= 'border-success border-2' if value[:score] >= 25 %>"
+                 data-property-id="<%= listing["property_id"] %>"
+                 style="cursor:pointer">
+              <div class="row g-0">
+                <% if (photo = listing.dig("primary_photo", "href")).present? %>
+                  <div class="col-4">
+                    <img src="<%= photo %>" class="img-fluid rounded-start h-100" style="object-fit:cover">
+                  </div>
+                  <div class="col-8">
+                <% else %>
+                  <div class="col-12">
+                <% end %>
+                    <div class="card-body py-2 px-3">
+                      <% if value[:badges].any? %>
+                        <div class="mb-1">
+                          <% value[:badges].each do |badge| %>
+                            <span class="badge bg-<%= badge[:style] %> me-1" style="font-size:0.65rem"><%= badge[:label] %></span>
+                          <% end %>
+                        </div>
+                      <% end %>
+                      <p class="fw-bold text-success mb-0" style="font-size:0.95rem">
+                        <%= number_to_currency(listing["list_price"], precision: 0) rescue listing["list_price"] %>
+                        <% if (ppsf = price_per_sqft(listing["list_price"], listing.dig("description", "sqft"))) %>
+                          <span class="text-muted fw-normal" style="font-size:0.7rem">&nbsp;&middot;&nbsp;<%= ppsf %>/sqft</span>
+                        <% end %>
+                      </p>
+                      <p class="mb-0 small"><%= listing.dig("location", "address", "line") %></p>
+                      <p class="text-muted mb-1" style="font-size:0.75rem">
+                        <%= listing.dig("description", "beds") %> bd &middot;
+                        <%= listing.dig("description", "baths_consolidated") %> ba &middot;
+                        <%= number_with_delimiter(listing.dig("description", "sqft")) %> sqft
+                      </p>
+                      <% chg = annualized_change(listing["list_price"], listing["last_sold_price"], listing["last_sold_date"]) %>
+                      <% if chg %>
+                        <% up = chg[:total] >= 0 %>
+                        <p class="mb-1" style="font-size:0.72rem">
+                          <span class="text-muted">Sold <%= chg[:year] %>:</span>
+                          <%= number_to_currency(chg[:sold_price], precision: 0) %>
+                          <span class="<%= up ? 'text-danger' : 'text-success' %> fw-bold">
+                            <%= up ? '▲' : '▼' %> <%= chg[:total].abs %>%
+                          </span>
+                          <span class="text-muted">(<%= up ? '+' : '' %><%= chg[:annual] %>%/yr)</span>
+                        </p>
+                      <% end %>
+                      <button class="btn btn-xs btn-outline-primary" style="font-size:0.75rem;padding:2px 8px">Show on Map</button>
+                      <% if value[:score] > 0 %>
+                        <span class="text-muted ms-2" style="font-size:0.7rem">score: <%= value[:score] %></span>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <%# Right: map %>
+        <div style="flex:1;min-width:0;">
+          <div id="listings-map" style="height:100%;border-radius:8px;"></div>
+        </div>
+
+      </div>
+
+      <%# Debug panel %>
+      <div class="mt-4">
+        <details>
+          <summary class="text-muted small">Raw API response (debug)</summary>
+          <pre class="bg-light p-3 mt-2 small" style="overflow:auto;max-height:400px"><%= JSON.pretty_generate(@raw_response) %></pre>
+        </details>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  (function initMap() {
+    const el = document.getElementById('listings-map');
+    if (!el) return;
+
+    // Destroy any existing Leaflet instance on the element (Turbo re-renders)
+    if (el._leaflet_id) {
+      el._leaflet_id = null;
+      el.innerHTML = '';
+    }
+
+    const markers = <%= raw (@map_markers || []).to_json %>;
+    const LV_CENTER = [36.1699, -115.1398];
+
+    const map = L.map('listings-map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    if (markers.length === 0) {
+      map.setView(LV_CENTER, 11);
+      L.popup()
+        .setLatLng(LV_CENTER)
+        .setContent('<b>No coordinates in API response.</b><br>Expand the debug panel below to find the coordinate field names.')
+        .openOn(map);
+      return;
+    }
+
+    const bounds = [];
+    const markerMap = {};
+
+    function fmt(n) { return n ? '$' + Number(n).toLocaleString() : 'N/A'; }
+
+    markers.forEach(function(m) {
+      const color = m.score >= 25 ? '#198754' : m.score > 0 ? '#0d6efd' : '#6c757d';
+      const icon = L.divIcon({
+        className: '',
+        html: `<div style="background:${color};color:#fff;padding:3px 6px;border-radius:4px;font-size:12px;font-weight:bold;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)">$${(m.price/1000).toFixed(0)}k</div>`,
+        iconAnchor: [20, 10]
+      });
+
+      // Price per sqft
+      let ppsqftHtml = '';
+      if (m.price && m.sqft) {
+        const ppsqft = (m.price / m.sqft).toFixed(0);
+        ppsqftHtml = `<div style="font-size:12px;color:#555">$${Number(ppsqft).toLocaleString()} / sqft</div>`;
+      }
+
+      // Price vs last sold + annualized %
+      let priceChangeHtml = '';
+      if (m.last_sold_price && m.last_sold_date) {
+        const year = m.last_sold_date.substring(0, 4);
+        const totalPct = ((m.price - m.last_sold_price) / m.last_sold_price * 100).toFixed(1);
+        const up = totalPct >= 0;
+        const arrow = up ? '▲' : '▼';
+        const clr = up ? '#dc3545' : '#198754';
+
+        const years = (Date.now() - new Date(m.last_sold_date)) / (365.25 * 86400000);
+        let annualHtml = '';
+        if (years >= 0.5) {
+          const annualPct = ((Math.pow(m.price / m.last_sold_price, 1 / years) - 1) * 100).toFixed(1);
+          const annualUp = annualPct >= 0;
+          annualHtml = `<span style="color:#888;font-size:11px;margin-left:6px">(${annualUp ? '+' : ''}${annualPct}%/yr)</span>`;
+        }
+
+        priceChangeHtml = `<div style="margin-top:5px;font-size:12px">
+          <span style="color:#555">Last sold ${year}:</span> ${fmt(m.last_sold_price)}
+          <span style="color:${clr};font-weight:bold;margin-left:4px">${arrow} ${Math.abs(totalPct)}%</span>${annualHtml}
+        </div>`;
+      }
+
+      // Estimate vs list
+      let estimateHtml = '';
+      if (m.estimate) {
+        const diff = m.estimate - m.price;
+        const sign = diff >= 0 ? '+' : '';
+        const clr = diff >= 0 ? '#198754' : '#dc3545';
+        estimateHtml = `<div style="font-size:12px;color:#555">
+          Est: ${fmt(m.estimate)} <span style="color:${clr}">(${sign}${fmt(Math.abs(diff))} vs ask)</span>
+        </div>`;
+      }
+
+      // Days on market
+      let domHtml = '';
+      if (m.list_date) {
+        const days = Math.floor((Date.now() - new Date(m.list_date)) / 86400000);
+        const domColor = days <= 7 ? '#198754' : days <= 30 ? '#fd7e14' : '#dc3545';
+        domHtml = `<div style="font-size:12px;margin-top:3px">
+          <span style="color:#555">Days on market:</span>
+          <span style="color:${domColor};font-weight:bold"> ${days}</span>
+        </div>`;
+      }
+
+      // Loan type note
+      const loanHtml = `<div style="font-size:11px;color:#888;margin-top:3px">Loan type: available on detail page</div>`;
+
+      // Value badges
+      const badgesHtml = m.badges.length
+        ? `<div style="margin-top:5px">${m.badges.map(b => `<span style="background:#0d6efd;color:#fff;border-radius:3px;padding:1px 5px;font-size:11px;margin-right:3px">${b}</span>`).join('')}</div>`
+        : '';
+
+      const popup = `
+        <div style="min-width:220px">
+          <strong style="font-size:13px">${m.address}</strong><br>
+          <span style="color:#555;font-size:12px">${m.city}, ${m.state} ${m.zip}</span>
+          <div style="font-size:15px;font-weight:bold;color:#198754;margin-top:4px">${fmt(m.price)}</div>
+          <div style="font-size:12px;color:#555">${m.beds} bd · ${m.baths} ba · ${m.sqft ? Number(m.sqft).toLocaleString() + ' sqft' : 'N/A'}</div>
+          ${ppsqftHtml}
+          ${estimateHtml}
+          ${priceChangeHtml}
+          ${domHtml}
+          ${loanHtml}
+          ${badgesHtml}
+          <div style="margin-top:8px">
+            <a href="${m.realtor_url}" target="_blank" rel="noopener" style="font-size:12px;color:#0d6efd">View on Realtor.com →</a>
+          </div>
+        </div>`;
+
+      const marker = L.marker([m.lat, m.lng], { icon }).addTo(map).bindPopup(popup, { maxWidth: 280 });
+      markerMap[m.id] = marker;
+      bounds.push([m.lat, m.lng]);
+    });
+
+    map.fitBounds(bounds, { padding: [40, 40] });
+
+    document.querySelectorAll('.listing-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        const id = this.dataset.propertyId;
+        if (markerMap[id]) {
+          map.setView(markerMap[id].getLatLng(), 15);
+          markerMap[id].openPopup();
+        }
+      });
+    });
+  })();
+</script>

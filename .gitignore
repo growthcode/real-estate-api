@@ -1,1 +1,7 @@
 .env
+/tmp/
+/log/
+/storage/
+/node_modules/
+/public/assets/
+/public/packs/
