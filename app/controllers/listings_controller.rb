@@ -9,13 +9,19 @@ class ListingsController < ApplicationController
     home_type  = params[:home_type].presence || "single_family"
     sort_field = params[:sort_field].presence || "best_value"
     sort_dir   = params[:sort_dir].presence || "desc"
-    best_value = sort_field == "best_value"
+    best_value    = sort_field == "best_value"
+    price_change  = sort_field.start_with?("price_change")
+    dollar_change = sort_field.start_with?("dollar_change")
     api_sort_field, api_sort_dir = case sort_field
-      when "best_value"      then ["list_date",  "desc"]
-      when "list_price_asc"  then ["list_price", "asc"]
-      when "list_price"      then ["list_price", "desc"]
-      when "sqft"            then ["sqft",        "asc"]
-      else                        [sort_field,    sort_dir]
+      when "best_value"                    then ["list_date",  "desc"]
+      when "list_price_asc"                then ["list_price", "asc"]
+      when "list_price"                    then ["list_price", "desc"]
+      when "sqft"                          then ["sqft",        "asc"]
+      when "price_change_asc",
+           "price_change_desc",
+           "dollar_change_asc",
+           "dollar_change_desc"            then ["list_date",  "desc"]
+      else                                      [sort_field,    sort_dir]
     end
 
     response = RealEstateService.search_listings(
@@ -26,12 +32,26 @@ class ListingsController < ApplicationController
       sort_field: api_sort_field, sort_dir: api_sort_dir
     )
 
-    raw_results = response.dig("data", "home_search", "results") ||
-                  response.dig("data", "results") || []
+    home_search = response.dig("data", "home_search") || {}
+    raw_results = (home_search["results"] || response.dig("data", "results") || [])
+                    .reject { |l| l["status"] == "contingent" }
+    @total_available = home_search["total"]
 
     scored    = ValueScorer.score_all(raw_results)
     @listings = if best_value
       scored
+    elsif dollar_change
+      asc = sort_field == "dollar_change_asc"
+      scored.sort_by { |l|
+        val = dollar_per_year(l["list_price"], l["last_sold_price"], l["last_sold_date"])
+        val.nil? ? Float::INFINITY : (asc ? val : -val)
+      }
+    elsif price_change
+      asc = sort_field == "price_change_asc"
+      scored.sort_by { |l|
+        pct = annualized_pct(l["list_price"], l["last_sold_price"], l["last_sold_date"])
+        pct.nil? ? Float::INFINITY : (asc ? pct : -pct)
+      }
     else
       scored.sort_by { |l|
         case sort_field
@@ -78,6 +98,24 @@ class ListingsController < ApplicationController
         badges:          l.dig("_value", :badges).map { |b| b[:label] }
       }
     end
+  end
+
+  def dollar_per_year(list_price, sold_price, sold_date_str)
+    return nil unless list_price.to_i > 0 && sold_price.to_i > 0 && sold_date_str.present?
+    sold_date = Date.parse(sold_date_str.to_s) rescue nil
+    return nil unless sold_date
+    years = (Date.today - sold_date).to_f / 365.25
+    return nil if years < 0.5
+    (list_price.to_f - sold_price.to_f) / years
+  end
+
+  def annualized_pct(list_price, sold_price, sold_date_str)
+    return nil unless list_price.to_i > 0 && sold_price.to_i > 0 && sold_date_str.present?
+    sold_date = Date.parse(sold_date_str.to_s) rescue nil
+    return nil unless sold_date
+    years = (Date.today - sold_date).to_f / 365.25
+    return nil if years < 0.5
+    ((list_price.to_f / sold_price.to_f) ** (1.0 / years) - 1) * 100
   end
 
   def extract_lat(obj)

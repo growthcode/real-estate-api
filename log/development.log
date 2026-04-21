@@ -467,3 +467,153 @@ Completed 200 OK in 2514ms (Views: 63.4ms | ActiveRecord: 0.0ms (0 queries, 0 ca
 
 [dotenv] Set [36mRAPIDAPI_KEY[0m
 [dotenv] Loaded [33m.env[0m
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:45:37 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 40.6ms | GC: 2.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 51.5ms | GC: 2.9ms)
+Completed 200 OK in 1829ms (Views: 56.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.6ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:49:58 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 28.7ms | GC: 2.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 40.9ms | GC: 2.8ms)
+Completed 200 OK in 1973ms (Views: 43.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.8ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:52:14 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 42.0ms | GC: 7.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 55.0ms | GC: 8.9ms)
+Completed 200 OK in 2422ms (Views: 56.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.7ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:54:33 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 45.9ms | GC: 8.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 60.2ms | GC: 9.8ms)
+Completed 200 OK in 1806ms (Views: 62.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.3ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=price_change_desc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:54:40 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"price_change_desc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 43.4ms | GC: 3.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 47.5ms | GC: 3.3ms)
+Completed 200 OK in 2182ms (Views: 48.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=price_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:55:32 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"price_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 36.6ms | GC: 3.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 38.8ms | GC: 3.4ms)
+Completed 200 OK in 2203ms (Views: 39.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 15.4ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=price_change_desc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:56:16 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"price_change_desc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 34.1ms | GC: 10.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 46.3ms | GC: 11.9ms)
+Completed 200 OK in 2362ms (Views: 50.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 50.7ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=price_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:57:10 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"price_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 42.2ms | GC: 5.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 45.3ms | GC: 5.8ms)
+Completed 200 OK in 2486ms (Views: 46.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 11.2ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=price_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:58:38 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"price_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 48.1ms | GC: 10.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 63.5ms | GC: 11.1ms)
+Completed 200 OK in 7667ms (Views: 65.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 13.5ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=price_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:58:48 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"price_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 45.5ms | GC: 2.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 59.8ms | GC: 4.4ms)
+Completed 200 OK in 1809ms (Views: 62.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.7ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=dollar_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:58:54 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"dollar_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 48.9ms | GC: 11.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 51.7ms | GC: 12.1ms)
+Completed 200 OK in 1845ms (Views: 52.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.7ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=dollar_change_desc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:59:01 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"dollar_change_desc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 43.6ms | GC: 2.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 46.8ms | GC: 3.0ms)
+Completed 200 OK in 1938ms (Views: 47.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.0ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=450000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=dollar_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:59:09 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"450000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"dollar_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 39.7ms | GC: 3.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 45.2ms | GC: 3.4ms)
+Completed 200 OK in 2162ms (Views: 46.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.5ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=300000&price_max=600000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=dollar_change_asc&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 16:59:25 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"300000", "price_max"=>"600000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"dollar_change_asc", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 42.9ms | GC: 3.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 44.8ms | GC: 3.4ms)
+Completed 200 OK in 2422ms (Views: 45.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 13.7ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=300000&price_max=600000&sqft_min=2000&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&commit=Search" for ::1 at 2026-04-20 17:01:07 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"300000", "price_max"=>"600000", "sqft_min"=>"2000", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 33.7ms | GC: 1.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 36.9ms | GC: 1.9ms)
+Completed 200 OK in 2450ms (Views: 37.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.7ms)
+
+

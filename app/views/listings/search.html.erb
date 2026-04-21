@@ -37,7 +37,9 @@
       <%= f.select :sort_field,
             [["⭐ Best Value", "best_value"], ["Newest", "list_date"],
              ["Price ↑", "list_price_asc"], ["Price ↓", "list_price"],
-             ["Sqft ↑", "sqft"], ["Price Reduced", "price_reduced_date"]],
+             ["Sqft ↑", "sqft"], ["Price Reduced", "price_reduced_date"],
+             ["Appreciation ↑", "price_change_asc"], ["Appreciation ↓", "price_change_desc"],
+             ["$/yr ↑", "dollar_change_asc"], ["$/yr ↓", "dollar_change_desc"]],
             { selected: params[:sort_field].presence || "best_value" },
             class: "form-select form-select-sm",
             data: { sort_field_select: true } %>
@@ -65,8 +67,19 @@
       <div class="alert alert-warning">No listings found. Try adjusting filters or check your API key.</div>
     <% else %>
       <p class="text-muted small mb-2">
-        <%= @listings.size %> results &mdash; <%= number_to_currency(@query[:price_min].to_i, precision: 0) %> to <%= number_to_currency(@query[:price_max].to_i, precision: 0) %>
-        &mdash; sorted by <%= @query[:sort_field] == "best_value" ? "⭐ best value" : @query[:sort_field].to_s.humanize.downcase %>
+        Showing <%= @listings.size %>
+        <% if @total_available && @total_available > @listings.size %>
+          of <strong><%= number_with_delimiter(@total_available) %></strong> available
+        <% end %>
+        &mdash; <%= number_to_currency(@query[:price_min].to_i, precision: 0) %> to <%= number_to_currency(@query[:price_max].to_i, precision: 0) %>
+        &mdash; sorted by <%= case @query[:sort_field]
+          when "best_value"        then "⭐ best value"
+          when "price_change_asc"  then "appreciation ↑"
+          when "price_change_desc" then "appreciation ↓"
+          when "dollar_change_asc"  then "$/yr ↑"
+          when "dollar_change_desc" then "$/yr ↓"
+          else @query[:sort_field].to_s.humanize.downcase
+        end %>
       </p>
 
       <div class="d-flex gap-3" style="height: calc(100vh - 200px);">
@@ -277,7 +290,7 @@
       card.addEventListener('click', function() {
         const id = this.dataset.propertyId;
         if (markerMap[id]) {
-          map.setView(markerMap[id].getLatLng(), 15);
+          map.setView(markerMap[id].getLatLng(), 13);
           markerMap[id].openPopup();
         }
       });
