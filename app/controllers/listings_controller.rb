@@ -1,4 +1,10 @@
 class ListingsController < ApplicationController
+  PROVIDERS = {
+    "realtor" => Providers::Realtor,
+    "zillow"  => Providers::Zillow,
+    "redfin"  => Providers::Redfin
+  }.freeze
+
   def search
     city       = params[:city].presence || "Las Vegas"
     state_code = params[:state_code].presence || "NV"
@@ -9,9 +15,12 @@ class ListingsController < ApplicationController
     home_type  = params[:home_type].presence || "single_family"
     sort_field = params[:sort_field].presence || "best_value"
     sort_dir   = params[:sort_dir].presence || "desc"
+    provider   = params[:provider].presence || "realtor"
+
     best_value    = sort_field == "best_value"
     price_change  = sort_field.start_with?("price_change")
     dollar_change = sort_field.start_with?("dollar_change")
+
     api_sort_field, api_sort_dir = case sort_field
       when "best_value"                    then ["list_date",  "desc"]
       when "list_price_asc"                then ["list_price", "asc"]
@@ -24,7 +33,8 @@ class ListingsController < ApplicationController
       else                                      [sort_field,    sort_dir]
     end
 
-    response = RealEstateService.search_listings(
+    provider_class = PROVIDERS[provider] || Providers::Realtor
+    result = provider_class.search(
       city: city, state_code: state_code, limit: 200,
       price_min: price_min, price_max: price_max,
       sqft_min: sqft_min, sqft_max: sqft_max,
@@ -32,12 +42,10 @@ class ListingsController < ApplicationController
       sort_field: api_sort_field, sort_dir: api_sort_dir
     )
 
-    home_search = response.dig("data", "home_search") || {}
-    raw_results = (home_search["results"] || response.dig("data", "results") || [])
-                    .reject { |l| l["status"] == "contingent" }
-    @total_available = home_search["total"]
+    @total_available = result[:total]
+    @raw_response    = result[:raw]
 
-    scored    = ValueScorer.score_all(raw_results)
+    scored    = ValueScorer.score_all(result[:listings])
     @listings = if best_value
       scored
     elsif dollar_change
@@ -62,11 +70,11 @@ class ListingsController < ApplicationController
         end
       }
     end
-    @raw_response = response.to_h
-    @query        = { city: city, state_code: state_code, price_min: price_min, price_max: price_max,
-                      sqft_min: sqft_min, sqft_max: sqft_max, home_type: home_type,
-                      sort_field: sort_field, sort_dir: sort_dir }
-    @map_markers  = build_markers(@listings)
+
+    @query = { city: city, state_code: state_code, price_min: price_min, price_max: price_max,
+               sqft_min: sqft_min, sqft_max: sqft_max, home_type: home_type,
+               sort_field: sort_field, sort_dir: sort_dir, provider: provider }
+    @map_markers = build_markers(@listings)
   end
 
   private

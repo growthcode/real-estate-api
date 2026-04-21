@@ -617,3 +617,32 @@ Processing by ListingsController#search as HTML
 Completed 200 OK in 2450ms (Views: 37.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.7ms)
 
 
+Started GET "/listings/search" for ::1 at 2026-04-20 19:55:53 -0700
+Processing by ListingsController#search as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 51.1ms | GC: 6.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 71.8ms | GC: 12.8ms)
+Completed 200 OK in 2653ms (Views: 75.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 18.4ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&sqft_min=1750&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&provider=redfin&commit=Search" for ::1 at 2026-04-20 19:56:01 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "sqft_min"=>"1750", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "provider"=>"redfin", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 2.2ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | GC: 0.3ms)
+Completed 200 OK in 847ms (Views: 8.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/listings/search?city=Las+Vegas&state_code=NV&price_min=200000&price_max=650000&sqft_min=1750&sqft_max=&home_type=single_family&sort_field=best_value&sort_dir=desc&provider=redfin&commit=Search" for ::1 at 2026-04-20 19:56:13 -0700
+Processing by ListingsController#search as HTML
+  Parameters: {"city"=>"Las Vegas", "state_code"=>"NV", "price_min"=>"200000", "price_max"=>"650000", "sqft_min"=>"1750", "sqft_max"=>"", "home_type"=>"single_family", "sort_field"=>"best_value", "sort_dir"=>"desc", "provider"=>"redfin", "commit"=>"Search"}
+  Rendering layout layouts/application.html.erb
+  Rendering listings/search.html.erb within layouts/application
+  Rendered listings/search.html.erb within layouts/application (Duration: 3.6ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.6ms)
+Completed 200 OK in 225ms (Views: 12.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+

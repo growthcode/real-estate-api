@@ -45,6 +45,12 @@
             data: { sort_field_select: true } %>
     </div>
     <%= f.hidden_field :sort_dir, value: params[:sort_dir].presence || "desc", id: "sort_dir_field" %>
+    <div class="col-md-2">
+      <%= f.select :provider,
+            [["Realtor.com", "realtor"], ["Zillow", "zillow"], ["Redfin", "redfin"]],
+            { selected: params[:provider].presence || "realtor" },
+            class: "form-select form-select-sm" %>
+    </div>
     <div class="col-md-1">
       <%= f.submit "Search", class: "btn btn-primary btn-sm w-100" %>
     </div>
@@ -67,6 +73,7 @@
       <div class="alert alert-warning">No listings found. Try adjusting filters or check your API key.</div>
     <% else %>
       <p class="text-muted small mb-2">
+        <strong><%= { "realtor" => "Realtor.com", "zillow" => "Zillow", "redfin" => "Redfin" }[@query[:provider]] %></strong> &mdash;
         Showing <%= @listings.size %>
         <% if @total_available && @total_available > @listings.size %>
           of <strong><%= number_with_delimiter(@total_available) %></strong> available
